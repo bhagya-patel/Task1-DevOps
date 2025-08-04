@@ -12,19 +12,7 @@ Node.js
 
 Docker
 
-📁 Project Structure
-bash
-Copy
-Edit
-.
-├── app/
-│   └── index.js          # Sample Node.js app
-├── Dockerfile            # Docker configuration
-├── .github/
-│   └── workflows/
-│       └── ci-cd.yml     # GitHub Actions workflow
-├── .dockerignore
-└── README.md
+
 🔄 CI/CD Workflow Overview
 Trigger: On every push to the main branch
 
@@ -84,26 +72,26 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKER_USERNAME }}/ci-cd-app:latest
 💡 Interview Questions & Answers
-2. How do GitHub Actions work?
+1. How do GitHub Actions work?
 GitHub Actions uses YAML workflows stored in .github/workflows/. When a specified event (like a push) occurs, GitHub triggers the defined workflow, executing jobs and steps using runners.
 
-3. What are runners?
+2. What are runners?
 Runners are virtual machines that run your GitHub Actions workflows. GitHub provides hosted runners (Ubuntu, Windows, macOS), or you can use self-hosted runners for custom environments.
 
-4. Difference between Jobs and Steps
+3. Difference between Jobs and Steps
 Aspect	Jobs	Steps
 Scope	Entire environment (VM)	Single task within a job
 Execution	Can run in parallel	Run sequentially in a job
 Container	Can define a container per job	Steps share the job’s container
 
-5. How to secure secrets in GitHub Actions?
+4. How to secure secrets in GitHub Actions?
 Use GitHub's Secrets feature under Repo Settings > Secrets and Variables.
 
 Reference secrets securely like: ${{ secrets.MY_SECRET_KEY }}
 
 Secrets are encrypted at rest and in transit.
 
-6. How to handle deployment errors?
+5. How to handle deployment errors?
 Add continue-on-error: false (default) to stop on failure
 
 Use try-catch style scripting or if: conditions
@@ -112,7 +100,7 @@ Enable Slack/email notifications on failure
 
 Log error messages using run: echo "Error..."
 
-7. Explain the Docker build-push workflow.
+6. Explain the Docker build-push workflow.
 bash
 Copy
 Edit
@@ -121,7 +109,7 @@ docker build -t image .  # Build the image from Dockerfile
 docker push image        # Push the image to registry
 These steps are often automated in CI/CD to ensure consistent image delivery.
 
-8. How can you test a CI/CD pipeline locally?
+7. How can you test a CI/CD pipeline locally?
 Use tools like act to simulate GitHub Actions locally
 
 bash
@@ -132,4 +120,3 @@ Use docker-compose or minikube to test deployments
 
 Run scripts manually and validate output before pushing
 
-✅ Final Deliverables
